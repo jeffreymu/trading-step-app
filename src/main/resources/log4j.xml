@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "http://logging.apache.org/log4j/docs/api/org/apache/log4j/xml/log4j.dtd">
+<log4j:configuration>
+
+	<appender name="FILE" class="org.apache.log4j.RollingFileAppender">
+		<param name="File" value="log/CJ-Trading-Step-Application.log"/>
+		<param name="Append" value="true"/>
+		<param name="MaxFileSize" value="10MB"/>
+		<param name="MaxBackupIndex" value="50"/>
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d %-5p %c{1} (%F:%L) - %m%n" />
+		</layout>
+	</appender>
+	
+	<appender name="STDOUT" class="org.apache.log4j.ConsoleAppender">
+		<param name="Target" value="System.out" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d %-5p %c{1} (%F:%L) - %m%n" />
+<!--			<param name="ConversionPattern" value="%m" />-->
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="TRACE" />
+			<param name="LevelMax" value="ERROR" />
+		</filter>
+	</appender>
+
+	<root>
+		<level value="info" />
+		<appender-ref ref="FILE"/>
+		<appender-ref ref="STDOUT"/>
+	</root>
+
+</log4j:configuration>
